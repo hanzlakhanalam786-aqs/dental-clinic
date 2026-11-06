@@ -22,6 +22,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { EditPracticeModal } from './components/EditPracticeModal';
 import { AppointmentManagerModal } from './components/AppointmentManagerModal';
+import { SitemapModal } from './components/SitemapModal';
 
 export default function App() {
   // Practice Info state with localStorage persistence
@@ -67,6 +68,7 @@ export default function App() {
   const [preselectedServiceId, setPreselectedServiceId] = useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAppointmentsManagerOpen, setIsAppointmentsManagerOpen] = useState(false);
+  const [isSitemapOpen, setIsSitemapOpen] = useState(false);
 
   // Sync practiceInfo changes to localStorage
   const handleSavePracticeInfo = (updated: PracticeInfo) => {
@@ -190,6 +192,7 @@ export default function App() {
         services={dentalServices}
         onSelectService={(service) => setSelectedService(service)}
         onOpenEditModal={() => setIsEditModalOpen(true)}
+        onOpenSitemap={() => setIsSitemapOpen(true)}
       />
 
       {/* Service Details Procedural Modal */}
@@ -214,6 +217,14 @@ export default function App() {
         bookings={bookings}
         onUpdateStatus={handleUpdateBookingStatus}
         onDeleteBooking={handleDeleteBooking}
+      />
+
+      {/* Interactive Website Site Map Modal */}
+      <SitemapModal
+        isOpen={isSitemapOpen}
+        onClose={() => setIsSitemapOpen(false)}
+        services={dentalServices}
+        onSelectService={(service) => setSelectedService(service)}
       />
     </div>
   );

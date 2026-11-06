@@ -1,13 +1,25 @@
 import React from 'react';
 import { ToothLogo } from './ToothLogo';
 import { PracticeInfo, DentalService } from '../types/dental';
-import { Phone, Mail, MapPin, Heart, ShieldAlert, MessageCircle, ArrowUp } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  ShieldAlert,
+  MessageCircle,
+  ArrowUp,
+  Globe,
+  Map,
+  FileCode,
+  ExternalLink,
+} from 'lucide-react';
 
 interface FooterProps {
   practiceInfo: PracticeInfo;
   services: DentalService[];
   onSelectService: (service: DentalService) => void;
   onOpenEditModal: () => void;
+  onOpenSitemap: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -15,12 +27,14 @@ export const Footer: React.FC<FooterProps> = ({
   services,
   onSelectService,
   onOpenEditModal,
+  onOpenSitemap,
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const cleanWhatsAppNumber = practiceInfo.whatsappNumber.replace(/[^0-9]/g, '');
+  const officialSiteUrl = 'https://hinakhandentalcare.netlify.app';
 
   return (
     <footer className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-900">
@@ -35,13 +49,35 @@ export const Footer: React.FC<FooterProps> = ({
               Healthy Smiles, Confident Lives. Dedicated to gentle, evidence-based dental healthcare, state-of-the-art hygiene, and an empowering patient experience.
             </p>
 
+            {/* Official Website Domain Badge */}
+            <div className="p-3 rounded-xl bg-slate-900 border border-slate-850 space-y-1.5 max-w-sm">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-slate-400 font-medium flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-sky-400" />
+                  <span>Live Official Domain</span>
+                </span>
+                <span className="text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                  Online
+                </span>
+              </div>
+              <a
+                href={officialSiteUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs font-mono font-bold text-white hover:text-sky-300 flex items-center gap-1 transition-colors"
+              >
+                <span>{officialSiteUrl}</span>
+                <ExternalLink className="w-3 h-3 text-sky-400" />
+              </a>
+            </div>
+
             {/* Social Media Links */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-1">
               <a
                 href={`https://wa.me/${cleanWhatsAppNumber}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-emerald-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-800"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -50,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
+                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold border border-slate-800"
                 aria-label="Instagram"
               >
                 IG
@@ -59,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
+                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-sky-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold border border-slate-800"
                 aria-label="Facebook"
               >
                 FB
@@ -68,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold"
+                className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-xs font-bold border border-slate-800"
                 aria-label="LinkedIn"
               >
                 IN
@@ -127,6 +163,15 @@ export const Footer: React.FC<FooterProps> = ({
                   Clinic Location
                 </a>
               </li>
+              <li>
+                <button
+                  onClick={onOpenSitemap}
+                  className="hover:text-sky-300 transition-colors text-left flex items-center gap-1.5 cursor-pointer text-sky-400 font-medium"
+                >
+                  <Map className="w-3.5 h-3.5" />
+                  <span>Site Map Directory</span>
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -151,40 +196,70 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Contact Details (3 cols) */}
+          {/* SEO & Sitemap Links (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="font-display text-sm font-bold text-white tracking-wide uppercase">
-              Practice Information
+            <h4 className="font-display text-sm font-bold text-white tracking-wide uppercase flex items-center gap-1.5">
+              <Map className="w-4 h-4 text-sky-400" />
+              <span>Sitemap & Index</span>
             </h4>
-            <div className="space-y-3 text-xs text-slate-400">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                <span className="leading-snug">{practiceInfo.clinicAddress}</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
-                <a href={`tel:${practiceInfo.phone}`} className="hover:text-white transition-colors">
-                  {practiceInfo.phone}
-                </a>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-                <a href={`mailto:${practiceInfo.email}`} className="hover:text-white transition-colors">
-                  {practiceInfo.email}
-                </a>
-              </div>
+
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Explore the full structure and search-engine index of Hina Khan Dental Care:
+            </p>
+
+            <div className="space-y-2">
+              <button
+                onClick={onOpenSitemap}
+                className="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-sky-950/80 hover:bg-sky-900 border border-sky-800 text-sky-300 hover:text-white flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Map className="w-3.5 h-3.5" />
+                  <span>Interactive Site Map</span>
+                </span>
+                <span>→</span>
+              </button>
+
+              <a
+                href={`${officialSiteUrl}/sitemap.xml`}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-2 px-3 text-xs font-medium rounded-lg bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-between transition-colors"
+              >
+                <span className="flex items-center gap-1.5">
+                  <FileCode className="w-3.5 h-3.5 text-amber-400" />
+                  <span>sitemap.xml (Google)</span>
+                </span>
+                <ExternalLink className="w-3 h-3 text-slate-500" />
+              </a>
+
+              <a
+                href={`${officialSiteUrl}/robots.txt`}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-2 px-3 text-xs font-medium rounded-lg bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-between transition-colors"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-slate-400" />
+                  <span>robots.txt Protocol</span>
+                </span>
+                <ExternalLink className="w-3 h-3 text-slate-500" />
+              </a>
             </div>
 
             <div className="pt-2">
-              <p className="text-[11px] text-slate-500 font-medium">Opening Hours</p>
-              <p className="text-xs text-slate-400 mt-0.5">{practiceInfo.openingHours.weekdays}</p>
-              <p className="text-xs text-slate-400">{practiceInfo.openingHours.saturday}</p>
+              <p className="text-[11px] text-slate-500 font-medium">Contact line</p>
+              <a href={`tel:${practiceInfo.phone}`} className="text-xs text-slate-300 hover:text-white block mt-0.5">
+                {practiceInfo.phone}
+              </a>
+              <a href={`mailto:${practiceInfo.email}`} className="text-xs text-slate-300 hover:text-white block">
+                {practiceInfo.email}
+              </a>
             </div>
           </div>
         </div>
 
         {/* Ethical Academic Transparency Banner */}
-        <div className="my-8 p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-400 flex items-start gap-3">
+        <div className="my-8 p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 flex items-start gap-3">
           <ShieldAlert className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
             <strong className="text-slate-200">Ethical Healthcare Disclaimer:</strong> Hina Khan Dental Care is currently a portfolio and future clinic concept website. Hina Khan is actively completing her dental academic studies. All qualifications, addresses, and sample reviews remain editable placeholders until officially confirmed upon regulatory licensing.
@@ -193,10 +268,22 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 pt-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span>© {new Date().getFullYear()} {practiceInfo.brandName}. All rights reserved.</span>
-            <span aria-hidden="true" className="text-slate-600">·</span>
-            <span>Healthy Smiles, Confident Lives</span>
+            <span aria-hidden="true" className="text-slate-700">·</span>
+            <a
+              href={officialSiteUrl}
+              className="text-slate-400 hover:text-sky-300 underline font-mono text-[11px]"
+            >
+              hinakhandentalcare.netlify.app
+            </a>
+            <span aria-hidden="true" className="text-slate-700">·</span>
+            <button
+              onClick={onOpenSitemap}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Site Map
+            </button>
           </div>
 
           <button

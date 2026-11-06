@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hinakhandentalcare.com/sitemap.xml
+Sitemap: https://hinakhandentalcare.netlify.app/sitemap.xml
