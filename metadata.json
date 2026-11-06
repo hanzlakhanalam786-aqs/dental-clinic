@@ -1,0 +1,6 @@
+{
+  "name": "Hina Khan Dental Care",
+  "description": "Premier dental healthcare clinic concept by Hina Khan. Healthy smiles, confident lives with modern gentle dentistry, whitening, implants, and orthodontic care.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
