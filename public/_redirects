@@ -1,0 +1,5 @@
+# Netlify redirects configuration
+/googlebfe1a4961296d02e.html  /googlebfe1a4961296d02e.html  200
+/sitemap.xml                  /sitemap.xml                  200
+/robots.txt                   /robots.txt                   200
+/*                            /index.html                   200
